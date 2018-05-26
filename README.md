@@ -11,10 +11,10 @@ To install, test, and run in development mode:
 $ npm install
 $ npm test
 
-# NODE_ENV can be "development" or "production". It has no influence on
+# NODE_CONFIG_ENV can be "development" or "production". It has no influence on
 # the code build and execution mode, it only sets the runtime configuration
 # (Node Config).
-$ NODE_ENV=development npm run dev
+$ NODE_CONFIG_ENV=development npm run dev
 ```
 
 To install, test, and run in production mode:
@@ -23,6 +23,6 @@ $ npm install
 $ npm test
 $ npm run build
 
-# Again, NODE_ENV can be "development" or "production" here.
-$ NODE_ENV=production npm start
+# Again, NODE_CONFIG_ENV can be "development" or "production" here.
+$ NODE_CONFIG_ENV=production npm start
 ```
