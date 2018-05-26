@@ -14,6 +14,14 @@ const standardDevelopmentConfig = standardConfigFactory({
   publicPath: '/api/cdn/public/static-assets',
 });
 
+const jsxRule = standardDevelopmentConfig.module.rules.find(rule =>
+  rule.loader === 'babel-loader');
+jsxRule.exclude = [
+  /node_modules[\\/](?!appirio-tech.*|topcoder|tc-)/,
+  /src[\\/]assets[\\/]fonts/,
+  /src[\\/]assets[\\/]images[\\/]dashboard/,
+];
+
 standardDevelopmentConfig.plugins.push(new webpack.DefinePlugin({
   PUBLIC_PATH: JSON.stringify('/api/cdn/public/static-assets'),
 }));

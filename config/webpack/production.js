@@ -18,6 +18,14 @@ const standardProductionConfig = standardConfigFactory({
   keepBuildInfo: Boolean(global.KEEP_BUILD_INFO),
 });
 
+const jsxRule = standardProductionConfig.module.rules.find(rule =>
+  rule.loader === 'babel-loader');
+jsxRule.exclude = [
+  /node_modules[\\/](?!appirio-tech.*|topcoder|tc-)/,
+  /src[\\/]assets[\\/]fonts/,
+  /src[\\/]assets[\\/]images[\\/]dashboard/,
+];
+
 standardProductionConfig.plugins.push(new webpack.DefinePlugin({
   PUBLIC_PATH: JSON.stringify(publicPath),
 }));
