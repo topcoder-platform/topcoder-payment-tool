@@ -1,0 +1,15 @@
+// Headings
+
+h1 { @include tc-heading-xl; }
+h2 { @include tc-heading-lg; }
+h3 { @include tc-heading-md; }
+h4 { @include tc-heading-sm; }
+h5 { @include tc-heading-xs; }
+h6 { @include tc-heading-xs; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 { color: inherit; }

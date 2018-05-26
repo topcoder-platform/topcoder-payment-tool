@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+require('babel-register')({
+  ignore: [
+    /node_modules\/(?!appirio-tech.*|topcoder|tc-)/,
+    /node_modules\/topcoder-react-utils/,
+  ],
+});
+
+require('../src/server');

@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reducer created with HTTP request Creates expected initial state 1`] = `[Function]`;
+
+exports[`Reducer created without HTTP request Creates expected initial state 1`] = `
+Object {
+  "auth": Object {
+    "authenticating": true,
+    "profile": null,
+    "tokenV2": "",
+    "tokenV3": "",
+    "user": null,
+  },
+  "challenge": Object {
+    "checkpoints": null,
+    "details": null,
+    "loadingCheckpoints": false,
+    "loadingDetailsForChallengeId": "",
+    "loadingResultsForChallengeId": "",
+    "mySubmissions": Object {},
+    "mySubmissionsManagement": Object {},
+    "registering": false,
+    "results": null,
+    "resultsLoadedForChallengeId": "",
+    "unregistering": false,
+    "updatingChallengeUuid": "",
+  },
+  "challengeListing": Object {
+    "allDraftChallengesLoaded": false,
+    "allPastChallengesLoaded": false,
+    "allReviewOpportunitiesLoaded": false,
+    "challengeSubtracks": Array [],
+    "challengeSubtracksMap": Object {},
+    "challengeTags": Array [],
+    "challenges": Array [],
+    "expandedTags": Array [],
+    "filter": Object {},
+    "filterPanel": Object {
+      "expanded": false,
+      "searchText": "",
+      "trackModalShown": false,
+    },
+    "keepPastPlaceholders": false,
+    "lastRequestedPageOfDraftChallenges": -1,
+    "lastRequestedPageOfPastChallenges": -1,
+    "lastRequestedPageOfReviewOpportunities": -1,
+    "lastUpdateOfActiveChallenges": 0,
+    "loadingActiveChallengesUUID": "",
+    "loadingChallengeSubtracks": false,
+    "loadingChallengeTags": false,
+    "loadingDraftChallengesUUID": "",
+    "loadingPastChallengesUUID": "",
+    "loadingReviewOpportunitiesUUID": "",
+    "reviewOpportunities": Array [],
+    "selectedCommunityId": "",
+    "sidebar": Object {
+      "activeBucket": "all",
+      "activeSavedFilter": 0,
+      "editSavedFiltersMode": false,
+      "isSavingFilter": false,
+      "savedFilters": Array [],
+    },
+    "sorts": Object {},
+    "srms": Object {
+      "data": Array [],
+      "loadingUuid": "",
+      "timestamp": 0,
+    },
+  },
+  "direct": Object {
+    "loadingProjectDetailsForId": 0,
+    "loadingProjectsForUsername": "",
+    "projectDetails": Object {},
+    "projectPermissions": Object {
+      "loadingForProjectId": 0,
+      "permissions": Array [],
+      "projectId": 0,
+      "timestamp": 0,
+    },
+    "projects": Array [],
+  },
+  "errors": Object {
+    "alerts": Array [],
+    "icons": Object {
+      "api": Array [],
+      "network": Array [],
+    },
+  },
+  "groups": Object {
+    "groups": Object {},
+    "loading": Object {},
+  },
+  "memberTasks": Object {
+    "allLoaded": false,
+    "lastRequestedPageNum": -1,
+    "loadingUuid": "",
+    "tasks": Array [],
+    "timestamps": Object {},
+  },
+  "members": Object {},
+  "mySubmissionsManagement": Object {},
+  "page": Object {
+    "sandbox": Object {
+      "payments": Object {
+        "editor": Object {
+          "getMemberSuggestionsForKeyword": "",
+          "memberInputKeyword": "",
+          "memberInputPopupVisible": false,
+          "memberInputSelected": Object {},
+          "memberSuggestions": Array [],
+          "pageState": "NEW_PAYMENT",
+          "paymentAmount": 0,
+          "paymentAssignee": "",
+          "paymentDescription": "",
+          "paymentTitle": "",
+          "selectedBillingAccountId": 0,
+          "selectedProjectId": 0,
+        },
+        "listing": Object {
+          "selectedProjectId": 0,
+        },
+      },
+    },
+  },
+  "profile": Object {
+    "achievements": null,
+    "copilot": false,
+    "country": "",
+    "info": null,
+    "loadingError": false,
+    "skills": null,
+    "stats": null,
+  },
+  "reviewOpportunity": Object {
+    "authError": false,
+    "details": null,
+    "isLoadingDetails": false,
+    "requiredTerms": Array [],
+  },
+  "stats": Object {
+    "communities": Object {},
+  },
+  "terms": Object {
+    "selectedTerm": null,
+    "terms": Array [],
+  },
+}
+`;

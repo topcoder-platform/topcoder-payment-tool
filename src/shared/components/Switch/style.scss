@@ -1,0 +1,36 @@
+@import '~styles/mixins';
+
+.handle {
+  background: $tc-white;
+  border-radius: 11px;
+  height: 11px;
+  margin: 2px;
+  position: absolute;
+  top: 0;
+  width: 11px;
+}
+
+.disabled {
+  background: $tc-gray-30;
+
+  .handle {
+    left: 0;
+  }
+}
+
+.enabled {
+  background: $tc-dark-blue;
+
+  .handle {
+    right: 0;
+  }
+}
+
+.switch {
+  border-radius: 12px;
+  cursor: pointer;
+  display: inline-block;
+  height: 15px;
+  position: relative;
+  width: 25px;
+}

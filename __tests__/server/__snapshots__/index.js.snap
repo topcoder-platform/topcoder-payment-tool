@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Passes basic tests 1`] = `
+Array [
+  Object {},
+  Object {
+    "Application": "APPLICATION",
+    "beforeRender": [Function],
+    "devMode": false,
+  },
+]
+`;

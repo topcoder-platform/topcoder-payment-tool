@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Passes basic testing 1`] = `
+Object {
+  "getApplication": [Function],
+  "moduleHot": undefined,
+  "storeFactory": [Function],
+}
+`;
+
+exports[`Passes basic testing 2`] = `[Function]`;

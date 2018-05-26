@@ -1,0 +1,56 @@
+@import '~styles/mixins';
+$type-space-20: $base-unit * 4;
+$type-space-40: $base-unit * 8;
+$type-space-60: $base-unit * 12;
+$type-radius-1: $corner-radius / 2;
+$type-radius-4: $corner-radius * 2;
+
+.cards-type-col {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0;
+
+  > a {
+    @include roboto-regular;
+
+    height: $type-space-60;
+    font-size: 20px;
+    color: $tc-dark-blue-70;
+    cursor: pointer;
+    line-height: $type-space-60;
+    display: inline-block;
+    margin-right: $type-space-40;
+
+    @include xs-to-md {
+      font-size: 14px;
+      font-weight: 400;
+      height: $type-space-40;
+      line-height: $type-space-40;
+      margin-right: $type-space-20;
+
+      &:last-child {
+        margin-right: $type-space-20 - 5;
+      }
+    }
+
+    &:visited {
+      color: $tc-dark-blue-70;
+    }
+
+    &:hover {
+      color: $tc-dark-blue;
+      text-decoration: none;
+    }
+
+    &.active {
+      color: $tc-black;
+      border-bottom: 2px solid $tc-gray-70;
+      cursor: default;
+      text-decoration: none;
+
+      @include xs-to-md {
+        font-weight: 500;
+      }
+    }
+  }
+}

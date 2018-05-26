@@ -1,0 +1,3 @@
+@import "~styles/mixins";
+
+.title { @include h1; }

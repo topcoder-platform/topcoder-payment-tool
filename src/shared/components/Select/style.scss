@@ -1,0 +1,16 @@
+.select {
+  :global {
+    @import '~react-select/dist/react-select';
+
+    width: 100%;
+
+    input.Select-input {
+      margin-left: 0 !important;
+      padding-right: 6px !important;
+    }
+
+    .Select-multi-value-wrapper {
+      width: 100% !important;
+    }
+  }
+}
