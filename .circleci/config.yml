@@ -34,6 +34,8 @@ jobs:
           command: |
             apk add --no-cache jq py-pip sudo
             sudo pip install awscli --upgrade
+      - deploy:
+          command: ./deploy.sh DEV $CIRCLE_SHA1
 
   # Build & Deploy against production backend
   "build-prod":
@@ -68,6 +70,8 @@ jobs:
             apk add --no-cache jq py-pip sudo
             sudo pip install awscli --upgrade
 
+      - deploy:
+          command: ./deploy.sh PROD $CIRCLE_SHA1
 
   # Test job for the cases when we do not need deployment. It just rapidly
   # installs (updates) app dependencies, and runs tests (ESLint, Stylelint,
