@@ -17,7 +17,7 @@ ENV SEGMENT_IO_API_KEY=$SEGMENT_IO_API_KEY
 
 RUN npm install
 RUN npm test
-RUN if [ "$NODE_CONFIG_ENV" = "production" ] ; then npm run build ; else npm run build:dev ; fi
+RUN npm run build
 
 EXPOSE 3000
 CMD ["npm", "start"]

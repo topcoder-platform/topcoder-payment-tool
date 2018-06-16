@@ -20,12 +20,13 @@ function selectProjectAndLoadMemberTasks(projectId, props) {
 class ListingContainer extends React.Component {
   componentDidMount() {
     const {
+      authenticating,
       loadingProjectsForUsername,
       loadProjects,
       tokenV3,
       username,
     } = this.props;
-    if (!tokenV3) return goToLogin('payments-tool');
+    if (!authenticating && !tokenV3) return goToLogin('payments-tool');
     if (username && username !== loadingProjectsForUsername) {
       loadProjects(tokenV3);
     }
@@ -34,6 +35,7 @@ class ListingContainer extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const {
+      authenticating,
       loadingProjectsForUsername,
       loadProjects,
       projects,
@@ -41,7 +43,7 @@ class ListingContainer extends React.Component {
       tokenV3,
       username,
     } = nextProps;
-    if (!tokenV3) return goToLogin('payments-tool');
+    if (!authenticating && !tokenV3) return goToLogin('payments-tool');
     if (username !== this.props.username && username
     && username !== loadingProjectsForUsername) {
       loadProjects(tokenV3);
@@ -80,6 +82,7 @@ class ListingContainer extends React.Component {
 }
 
 ListingContainer.propTypes = {
+  authenticating: PT.bool.isRequired,
   loadingMemberTasks: PT.bool.isRequired,
   loadProjects: PT.func.isRequired,
   loadingProjectsForUsername: PT.string.isRequired,
@@ -100,6 +103,7 @@ function mapStateToProps(state) {
   const { auth, direct, memberTasks } = state;
   const page = state.page.sandbox.payments.listing;
   return {
+    authenticating: auth.authenticating,
     loadingMemberTasks: Boolean(memberTasks.loadingUuid),
     loadingProjectsForUsername: direct.loadingProjectsForUsername,
     memberTasks: memberTasks.tasks,

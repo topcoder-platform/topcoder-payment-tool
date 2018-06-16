@@ -67,6 +67,7 @@ function handleProjectDetailsLoading(props) {
 class EditorContainer extends React.Component {
   componentDidMount() {
     const {
+      authenticating,
       challenge,
       getChallenge,
       loadingProjectsForUsername,
@@ -79,7 +80,7 @@ class EditorContainer extends React.Component {
       tokenV3,
       username,
     } = this.props;
-    if (!tokenV3) return goToLogin('payments-tool');
+    if (!authenticating && !tokenV3) return goToLogin('payments-tool');
     if (username && username !== loadingProjectsForUsername) {
       loadProjects(tokenV3);
     }
@@ -96,6 +97,7 @@ class EditorContainer extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const {
+      authenticating,
       challenge,
       loadingProjectsForUsername,
       loadProjects,
@@ -114,7 +116,7 @@ class EditorContainer extends React.Component {
       tokenV3,
       username,
     } = nextProps;
-    if (!tokenV3) return goToLogin('payments-tool');
+    if (!authenticating && !tokenV3) return goToLogin('payments-tool');
     const {
       projects: oldProjects,
       username: oldUsername,
@@ -308,6 +310,7 @@ EditorContainer.defaultProps = {
 };
 
 EditorContainer.propTypes = {
+  authenticating: PT.bool.isRequired,
   challenge: PT.shape(),
   getChallenge: PT.func.isRequired,
   loadingProjectDetailsForId: PT.number.isRequired,
@@ -362,6 +365,7 @@ function mapStateToProps(state, ownProps) {
   }
 
   return {
+    authenticating: auth.authenticating,
     challenge,
     loadingProjectDetailsForId: direct.loadingProjectDetailsForId,
     loadingProjectsForUsername: direct.loadingProjectsForUsername,

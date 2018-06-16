@@ -7,14 +7,14 @@
     "build": "npm run clean && ./node_modules/.bin/webpack --env=production --progress --profile --colors --display-optimization-bailout",
     "build:dev": "npm run clean && ./node_modules/.bin/webpack --env=development --progress --profile --colors --display-optimization-bailout",
     "clean": "./node_modules/.bin/rimraf build",
-    "dev": "cross-env BABEL_ENV=development node ./bin/www",
+    "dev": "cross-env BABEL_ENV=development NODE_ENV=development node ./bin/www",
     "fix:js": "./node_modules/.bin/eslint --fix --ext .js,.jsx .",
     "fix:styles": "./node_modules/.bin/stylelint **/*.scss --syntax scss --fix",
     "jest": "cross-env BABEL_ENV=test ./node_modules/.bin/jest --no-cache --maxWorkers=4 --config config/jest/default.js",
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "./node_modules/.bin/eslint --ext .js,.jsx .",
     "lint:scss": "./node_modules/.bin/stylelint **/*.scss --syntax scss",
-    "start": "cross-env BABEL_ENV=production node ./bin/www",
+    "start": "cross-env BABEL_ENV=production NODE_ENV=production node ./bin/www",
     "test": "npm run lint && npm run jest"
   },
   "repository": {
