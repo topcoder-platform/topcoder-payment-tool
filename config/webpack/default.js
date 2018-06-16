@@ -2,8 +2,10 @@
  * Right place for any custom Webpack config, common for all environments.
  */
 
-let publicPath = process.env.CDN_URL || '/api/cdn/public';
-publicPath += '/static-assets';
+// let publicPath = process.env.CDN_URL || '/api/cdn/public';
+// publicPath += '/static-assets';
+
+const publicPath = '';
 
 module.exports = {
   externals: {

@@ -6,9 +6,13 @@ const webpackMerge = require('webpack-merge');
 
 const customDefaultConfig = require('./default');
 
+/*
 let publicPath = process.env.CDN_URL;
 if (publicPath) publicPath += '/static-assets';
 else publicPath = '/api/cdn/public/static-assets';
+*/
+
+const publicPath = '';
 
 const standardProductionConfig = standardConfigFactory({
   context: path.resolve(__dirname, '../..'),
