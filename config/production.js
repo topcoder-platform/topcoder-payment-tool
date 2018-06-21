@@ -3,6 +3,10 @@
  */
 
 module.exports = {
+  API: {
+    V2: 'https://api.topcoder.com/v2',
+    V3: 'https://api.topcoder.com/v3',
+  },
   CDN: {
     PUBLIC: 'https://d2nl5eqipnb33q.cloudfront.net',
   },
