@@ -17,8 +17,8 @@ export default function Application() {
   return (
     <div>
       <MetaTags
-        title="Topcoder React Starter"
-        description="Yet another webapp based on Topcoder React Starter Kit"
+        title="Topcoder Payment Tool"
+        description="Topcoder Payment Tool"
       />
       <Routes />
       { isomorphy.isDevBuild() ? <DevTools /> : undefined }
