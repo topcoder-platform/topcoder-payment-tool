@@ -13,9 +13,14 @@ import webpackConfigFactory from '../../webpack.config';
 
 const mode = process.env.BABEL_ENV;
 
-let ts = path.resolve(__dirname, '../../.build-info');
-ts = JSON.parse(fs.readFileSync(ts));
-ts = moment(ts.timestamp).valueOf();
+let ts;
+try {
+  ts = path.resolve(__dirname, '../../.build-info');
+  ts = JSON.parse(fs.readFileSync(ts));
+  ts = moment(ts.timestamp).valueOf();
+} catch (e) {
+  ts = 0;
+}
 
 const EXTRA_SCRIPTS = [
   `<script
