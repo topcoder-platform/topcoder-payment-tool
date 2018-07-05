@@ -28,7 +28,9 @@ export default function Background({ children, onExit, escapeButton }) {
           <div styleName="button">
             <CloseIcon />
           </div>
-          <div styleName="text">ESC</div>
+          <div styleName="text">
+ESC
+          </div>
         </a>
       )}
       {children}

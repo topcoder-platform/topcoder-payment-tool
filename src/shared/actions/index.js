@@ -6,6 +6,7 @@ import pageActions from './page';
 
 export default {
   ...pageActions,
+  challenge: actions.challenge,
   memberTasks: actions.memberTasks,
   direct: actions.direct,
 };

@@ -56,7 +56,9 @@ export default function Editor({
     content = billingAccounts.length ? (
       <div styleName="field">
         <div styleName="field">
-          <span styleName="label">Billing account</span>
+          <span styleName="label">
+Billing account
+          </span>
           <Select
             autoBlur
             disabled={!neu}
@@ -66,7 +68,9 @@ export default function Editor({
         </div>
         <div styleName="fieldGap" />
         <div styleName="field">
-          <span styleName="label">Title</span>
+          <span styleName="label">
+Title
+          </span>
           <input
             disabled={!neu}
             onChange={e => setPaymentTitle(e.target.value)}
@@ -75,7 +79,9 @@ export default function Editor({
           />
         </div>
         <div styleName="field">
-          <span styleName="label">Description</span>
+          <span styleName="label">
+Description
+          </span>
           <textarea
             disabled={!neu}
             onChange={e => setPaymentDescription(e.target.value)}
@@ -85,7 +91,9 @@ export default function Editor({
           />
         </div>
         <div styleName="field">
-          <span styleName="label">Assign to</span>
+          <span styleName="label">
+Assign to
+          </span>
           <MemberSearchInput
             disabled={!neu}
             placeholder="Type handle to assign member"
@@ -106,10 +114,14 @@ export default function Editor({
           />
         </div>
         <div styleName="field">
-          <span styleName="label">Amount</span>
+          <span styleName="label">
+Amount
+          </span>
           <div styleName="withPrefix">
             <div styleName="prefix">
-              <div styleName="textPrefix">$</div>
+              <div styleName="textPrefix">
+$
+              </div>
             </div>
             <input
               disabled={!neu}
@@ -129,7 +141,8 @@ export default function Editor({
               <PrimaryButton
                 onClick={makePayment}
                 // to="/sandbox/payments/123/done"
-              >Pay now
+              >
+Pay now
               </PrimaryButton>
             ) : null
           }
@@ -149,10 +162,14 @@ export default function Editor({
       onExit={() => { window.location = '/'; }}
     >
       <div styleName="container">
-        <h1 styleName="title">{`${neu ? 'New ' : ''}Member Payment`}</h1>
+        <h1 styleName="title">
+          {`${neu ? 'New ' : ''}Member Payment`}
+        </h1>
         <div styleName="form">
           <div styleName="field">
-            <span styleName="label">Project</span>
+            <span styleName="label">
+Project
+            </span>
             <Select
               autoBlur
               disabled={!neu}

@@ -1,6 +1,5 @@
 const path = require('path');
-const standardConfigFactory =
-  require('topcoder-react-utils/config/webpack/app-development');
+const standardConfigFactory = require('topcoder-react-utils/config/webpack/app-development');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 
@@ -14,8 +13,7 @@ const standardDevelopmentConfig = standardConfigFactory({
   publicPath: '/api/cdn/public/static-assets',
 });
 
-const jsxRule = standardDevelopmentConfig.module.rules.find(rule =>
-  rule.loader === 'babel-loader');
+const jsxRule = standardDevelopmentConfig.module.rules.find(rule => rule.loader === 'babel-loader');
 jsxRule.exclude = [
   /node_modules[\\/](?!appirio-tech.*|topcoder|tc-)/,
   /src[\\/]assets[\\/]fonts/,

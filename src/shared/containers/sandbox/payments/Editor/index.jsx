@@ -199,13 +199,22 @@ class EditorContainer extends React.Component {
   }
 
   resetPaymentData() {
-    this.props.setPageState(PAGE_STATE.NEW_PAYMENT);
-    this.props.setPaymentAmount(0);
-    this.props.setPaymentAssignee('');
-    this.props.setPaymentDescription('');
-    this.props.setPaymentTitle('');
-    this.props.setMemberInputKeyword('');
-    this.props.setMemberInputPopupVisible(false);
+    const {
+      setMemberInputKeyword,
+      setMemberInputPopupVisible,
+      setPageState,
+      setPaymentAmount,
+      setPaymentAssignee,
+      setPaymentDescription,
+      setPaymentTitle,
+    } = this.props;
+    setPageState(PAGE_STATE.NEW_PAYMENT);
+    setPaymentAmount(0);
+    setPaymentAssignee('');
+    setPaymentDescription('');
+    setPaymentTitle('');
+    setMemberInputKeyword('');
+    setMemberInputPopupVisible(false);
   }
 
   render() {
@@ -258,7 +267,9 @@ class EditorContainer extends React.Component {
       }
       return (
         <Background>
-          <div styleName="statusMsg">{msg}</div>
+          <div styleName="statusMsg">
+            {msg}
+          </div>
           <LoadingIndicator />
         </Background>
       );
@@ -414,8 +425,7 @@ function mapDispatchToProps(dispatch) {
     setMemberInputPopupVisible: visible => dispatch(page.setMemberInputPopupVisible(visible)),
     setMemberInputKeyword: keyword => dispatch(page.setMemberInputKeyword(keyword)),
     setMemberInputSelected: member => dispatch(page.setMemberInputSelected(member)),
-    selectBillingAccount: accountId =>
-      dispatch(page.selectBillingAccount(accountId)),
+    selectBillingAccount: accountId => dispatch(page.selectBillingAccount(accountId)),
     selectProject: projectId => dispatch(page.selectProject(projectId)),
     setPageState: state => dispatch(page.setPageState(state)),
     setPaymentAmount: arg => dispatch(page.setPaymentAmount(arg)),
