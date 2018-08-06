@@ -35,10 +35,13 @@ export default function PaymentRow({ challenge }) {
       <td styleName="name">
         <Link
           to={`/${challenge.id}`}
-        >{challenge.name}
+        >
+          {challenge.name}
         </Link>
       </td>
-      <td styleName="price">{`$${_.get(challenge, 'prizes[0]', '-')}`}</td>
+      <td styleName="price">
+        {`$${_.get(challenge, 'prizes[0]', '-')}`}
+      </td>
       <td>
         {
           winner ? (
@@ -54,14 +57,17 @@ export default function PaymentRow({ challenge }) {
                   enforceA
                   openNewTab
                   to={`${config.URL.BASE}/members/${winner.handle}`}
-                >{winner.handle}
+                >
+                  {winner.handle}
                 </Link>
               </span>
             </div>
           ) : 'N/A'
         }
       </td>
-      <td><PaymentStatus status={challenge.status} text={challenge.status} /></td>
+      <td>
+        <PaymentStatus status={challenge.status} text={challenge.status} />
+      </td>
     </tr>
   );
 }

@@ -19,12 +19,10 @@ import _ from 'lodash';
 import { redux } from 'topcoder-react-utils';
 import { reducerFactory } from 'topcoder-react-lib';
 import { factory as pageFactory } from './page';
-import { factory as challengeListingFactory } from './challenge-listing';
 
 export async function factory(req) {
   const resolvedReducers = await redux.resolveReducers({
     standard: reducerFactory(req),
-    challengeListing: challengeListingFactory(req),
     page: pageFactory(req),
   });
 

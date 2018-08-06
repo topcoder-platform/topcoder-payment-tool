@@ -25,48 +25,6 @@ Object {
     "unregistering": false,
     "updatingChallengeUuid": "",
   },
-  "challengeListing": Object {
-    "allDraftChallengesLoaded": false,
-    "allPastChallengesLoaded": false,
-    "allReviewOpportunitiesLoaded": false,
-    "challengeSubtracks": Array [],
-    "challengeSubtracksMap": Object {},
-    "challengeTags": Array [],
-    "challenges": Array [],
-    "expandedTags": Array [],
-    "filter": Object {},
-    "filterPanel": Object {
-      "expanded": false,
-      "searchText": "",
-      "trackModalShown": false,
-    },
-    "keepPastPlaceholders": false,
-    "lastRequestedPageOfDraftChallenges": -1,
-    "lastRequestedPageOfPastChallenges": -1,
-    "lastRequestedPageOfReviewOpportunities": -1,
-    "lastUpdateOfActiveChallenges": 0,
-    "loadingActiveChallengesUUID": "",
-    "loadingChallengeSubtracks": false,
-    "loadingChallengeTags": false,
-    "loadingDraftChallengesUUID": "",
-    "loadingPastChallengesUUID": "",
-    "loadingReviewOpportunitiesUUID": "",
-    "reviewOpportunities": Array [],
-    "selectedCommunityId": "",
-    "sidebar": Object {
-      "activeBucket": "all",
-      "activeSavedFilter": 0,
-      "editSavedFiltersMode": false,
-      "isSavingFilter": false,
-      "savedFilters": Array [],
-    },
-    "sorts": Object {},
-    "srms": Object {
-      "data": Array [],
-      "loadingUuid": "",
-      "timestamp": 0,
-    },
-  },
   "direct": Object {
     "loadingProjectDetailsForId": 0,
     "loadingProjectsForUsername": "",
@@ -89,6 +47,9 @@ Object {
   "groups": Object {
     "groups": Object {},
     "loading": Object {},
+  },
+  "lookup": Object {
+    "skillTags": Array [],
   },
   "memberTasks": Object {
     "allLoaded": false,
@@ -136,6 +97,9 @@ Object {
     "details": null,
     "isLoadingDetails": false,
     "requiredTerms": Array [],
+  },
+  "settings": Object {
+    "userTraits": Array [],
   },
   "stats": Object {
     "communities": Object {},

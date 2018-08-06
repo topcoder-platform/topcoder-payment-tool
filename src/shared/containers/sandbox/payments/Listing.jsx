@@ -41,11 +41,14 @@ class ListingContainer extends React.Component {
       projects,
       selectedProjectId,
       tokenV3,
-      username,
+      username: nextUsername,
     } = nextProps;
+    const {
+      username,
+    } = this.props;
     if (!authenticating && !tokenV3) return goToLogin('payments-tool');
-    if (username !== this.props.username && username
-    && username !== loadingProjectsForUsername) {
+    if (nextUsername !== username && nextUsername
+    && nextUsername !== loadingProjectsForUsername) {
       loadProjects(tokenV3);
     }
     if (!selectedProjectId && projects.length) {
@@ -74,8 +77,7 @@ class ListingContainer extends React.Component {
         memberTasks={memberTasks}
         projects={projects}
         selectedProjectId={selectedProjectId}
-        selectProject={projectId =>
-          selectProjectAndLoadMemberTasks(projectId, this.props)}
+        selectProject={projectId => selectProjectAndLoadMemberTasks(projectId, this.props)}
       />
     );
   }
