@@ -38,10 +38,18 @@ export default function Listing({
         <thead>
           <tr>
             <th />
-            <th styleName="name">Payment</th>
-            <th>Amount</th>
-            <th>Member</th>
-            <th>Status</th>
+            <th styleName="name">
+Payment
+            </th>
+            <th>
+Amount
+            </th>
+            <th>
+Member
+            </th>
+            <th>
+Status
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -65,9 +73,13 @@ export default function Listing({
   return (
     <Background>
       <div styleName="container">
-        <h1 styleName="title">Member Payments</h1>
+        <h1 styleName="title">
+Member Payments
+        </h1>
         <div styleName="actionBar">
-          <span styleName="text">Project</span>
+          <span styleName="text">
+Project
+          </span>
           <Select
             autoBlur
             clearable={false}
@@ -83,7 +95,8 @@ export default function Listing({
                 button: style.newPaymentButton,
               }}
               to="/new"
-            >New payment
+            >
+New payment
             </PrimaryButton>
           </div>
         </div>

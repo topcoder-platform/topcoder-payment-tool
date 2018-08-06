@@ -18,25 +18,42 @@ export default function Confirmation({
     <Background>
       <div styleName="container">
         <div styleName="card">
-          <h1 styleName="title">Payment Completed</h1>
+          <h1 styleName="title">
+Payment Completed
+          </h1>
           <p styleName="description">
             Your payment has been accepted and money will be shortly transfered from
             your account.
           </p>
           <div styleName="paycheck">
             <div styleName="info">
-              <p styleName="user"><strong>${amount}</strong> paid to <strong styleName="name">{assignee}</strong></p>
-              <p styleName="task">Develop a new project submit button logic for the main page.</p>
+              <p styleName="user">
+                <strong>
+$
+                  {amount}
+                </strong>
+                {' '}
+paid to
+                {' '}
+                <strong styleName="name">
+                  {assignee}
+                </strong>
+              </p>
+              <p styleName="task">
+Develop a new project submit button logic for the main page.
+              </p>
             </div>
           </div>
           <div styleName="actions">
             <Button
               onClick={resetPaymentData}
-            >Make another payment
+            >
+Make another payment
             </Button>
             <PrimaryButton
               to="/"
-            >Ok, done for now
+            >
+Ok, done for now
             </PrimaryButton>
           </div>
         </div>

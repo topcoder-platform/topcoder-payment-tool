@@ -23,7 +23,9 @@ export default function PaymentStatus({ status, text }) {
   return (
     <div styleName="paymentStatus">
       <Icon styleName="icon" />
-      <span styleName="text">{text}</span>
+      <span styleName="text">
+        {text}
+      </span>
     </div>
   );
 }
