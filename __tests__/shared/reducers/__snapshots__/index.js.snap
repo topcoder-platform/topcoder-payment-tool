@@ -108,29 +108,5 @@ Object {
     "selectedTerm": null,
     "terms": Array [],
   },
-  "ui": Object {
-    "settings": Object {
-      "TABS": Object {
-        "PROFILE": Object {
-          "BASIC": "basic info",
-          "COMMUNITY": "community",
-          "EDUCATION": "education",
-          "HOBBY": "hobby",
-          "LANGUAGE": "language",
-          "ORGANIZATION": "organization",
-          "SKILL": "skill",
-          "WORK": "work",
-        },
-        "TOOLS": Object {
-          "DEVICES": "devices",
-          "PROVIDERS": "service providers",
-          "SOFTWARE": "software",
-          "SUBSCRIPTIONS": "subscriptions",
-        },
-      },
-      "currentProfileTab": "basic info",
-      "currentToolsTab": "devices",
-    },
-  },
 }
 `;
