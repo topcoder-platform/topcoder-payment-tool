@@ -13,12 +13,17 @@ function selectProject(projectId) {
   return projectId;
 }
 
+function toggleProjects(toggle) {
+  return toggle;
+}
+
 export default createActions({
   PAGE: {
     SANDBOX: {
       PAYMENTS: {
         LISTING: {
           SELECT_PROJECT: selectProject,
+          TOGGLE_PROJECTS: toggleProjects,
         },
       },
     },

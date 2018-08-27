@@ -7,6 +7,7 @@ import PT from 'prop-types';
 import React from 'react';
 import Select from 'components/Select';
 import { PrimaryButton } from 'topcoder-react-ui-kit';
+import SwitchWithLabel from 'components/SwitchWithLabel';
 import Background from '../Background';
 import PaymentRow from './PaymentRow';
 import style from './style.scss';
@@ -17,6 +18,8 @@ export default function Listing({
   projects,
   selectedProjectId,
   selectProject,
+  toggleProjects,
+  hasActiveBillingAccount,
 }) {
   const selectedProjectIdNum = Number(selectedProjectId);
   let content = memberTasks
@@ -40,6 +43,9 @@ export default function Listing({
             <th />
             <th styleName="name">
 Payment
+            </th>
+            <th>
+Payment Date
             </th>
             <th>
 Amount
@@ -89,6 +95,11 @@ Project
             value={Number(selectedProjectId)}
             valueKey="id"
           />
+          <SwitchWithLabel
+            labelBefore="with billing ac"
+            enabled={hasActiveBillingAccount}
+            onSwitch={toggleProjects}
+          />
           <div styleName="button">
             <PrimaryButton
               theme={{
@@ -108,8 +119,10 @@ New payment
 
 Listing.propTypes = {
   loadingMemberTasks: PT.bool.isRequired,
+  hasActiveBillingAccount: PT.bool.isRequired,
   memberTasks: PT.arrayOf(PT.shape()).isRequired,
   projects: PT.arrayOf(PT.shape()).isRequired,
   selectedProjectId: PT.number.isRequired,
   selectProject: PT.func.isRequired,
+  toggleProjects: PT.func.isRequired,
 };

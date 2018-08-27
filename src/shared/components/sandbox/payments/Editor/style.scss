@@ -27,8 +27,20 @@
   height: 30px;
 }
 
+.fieldFlex {
+  display: flex;
+
+  + .fieldFlex {
+    margin-top: 10px;
+  }
+}
+
 .field {
   + .field {
+    margin-top: 10px;
+  }
+
+  + .fieldFlex {
     margin-top: 10px;
   }
 
@@ -119,4 +131,29 @@
   margin-top: 30px;
   padding-left: 130px;
   text-align: center;
+}
+
+.fakeTextArea {
+  width: 450px;
+  border: 1px solid #c0c0c0;
+  background-color: #aaaaab;
+  box-shadow: none;
+  border-radius: 4px;
+  padding: 5px;
+  min-height: 80px;
+  overflow: auto;
+  max-height: 450px;
+  margin-bottom: 10px;
+}
+
+.dateLabel {
+  box-sizing: border-box;
+  display: inline-block;
+  line-height: 40px;
+  text-align: right;
+  padding-right: 10px;
+  vertical-align: top;
+  font-size: 15px;
+  color: $tc-gray-80;
+  letter-spacing: 0;
 }

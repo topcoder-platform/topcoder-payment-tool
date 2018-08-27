@@ -25,10 +25,11 @@ class ListingContainer extends React.Component {
       loadProjects,
       tokenV3,
       username,
+      hasActiveBillingAccount,
     } = this.props;
     if (!authenticating && !tokenV3) return goToLogin('payments-tool');
     if (username && username !== loadingProjectsForUsername) {
-      loadProjects(tokenV3);
+      loadProjects(tokenV3, hasActiveBillingAccount);
     }
     return undefined;
   }
@@ -42,14 +43,19 @@ class ListingContainer extends React.Component {
       selectedProjectId,
       tokenV3,
       username: nextUsername,
+      hasActiveBillingAccount: nextHasActiveBillingAccount,
     } = nextProps;
     const {
       username,
+      hasActiveBillingAccount,
     } = this.props;
     if (!authenticating && !tokenV3) return goToLogin('payments-tool');
     if (nextUsername !== username && nextUsername
     && nextUsername !== loadingProjectsForUsername) {
-      loadProjects(tokenV3);
+      loadProjects(tokenV3, nextHasActiveBillingAccount);
+    }
+    if (nextHasActiveBillingAccount !== hasActiveBillingAccount) {
+      loadProjects(tokenV3, nextHasActiveBillingAccount);
     }
     if (!selectedProjectId && projects.length) {
       selectProjectAndLoadMemberTasks(projects[0].id, nextProps);
@@ -65,6 +71,8 @@ class ListingContainer extends React.Component {
       projects,
       selectedProjectId,
       tokenV3,
+      toggleProjects,
+      hasActiveBillingAccount,
     } = this.props;
 
     if ((loadingProjectsForUsername && !projects.length) || !tokenV3) {
@@ -77,6 +85,8 @@ class ListingContainer extends React.Component {
         memberTasks={memberTasks}
         projects={projects}
         selectedProjectId={selectedProjectId}
+        toggleProjects={toggleProjects}
+        hasActiveBillingAccount={hasActiveBillingAccount}
         selectProject={projectId => selectProjectAndLoadMemberTasks(projectId, this.props)}
       />
     );
@@ -86,7 +96,9 @@ class ListingContainer extends React.Component {
 ListingContainer.propTypes = {
   authenticating: PT.bool.isRequired,
   loadingMemberTasks: PT.bool.isRequired,
+  hasActiveBillingAccount: PT.bool.isRequired,
   loadProjects: PT.func.isRequired,
+  toggleProjects: PT.func.isRequired,
   loadingProjectsForUsername: PT.string.isRequired,
   memberTasks: PT.arrayOf(PT.object).isRequired,
   projects: PT.arrayOf(PT.object).isRequired,
@@ -111,6 +123,7 @@ function mapStateToProps(state) {
     memberTasks: memberTasks.tasks,
     projects: direct.projects,
     selectedProjectId: page.selectedProjectId,
+    hasActiveBillingAccount: page.hasActiveBillingAccount,
     tokenV3: auth.tokenV3,
     username: _.get(auth, 'user.handle', ''),
   };
@@ -130,9 +143,12 @@ function mapDispatchToProps(dispatch) {
       dispatch(memberTasks.getInit(uuid, pageNum));
       dispatch(memberTasks.getDone(uuid, projectId, pageNum, tokenV3));
     },
-    loadProjects: (tokenV3) => {
+    toggleProjects: (toggle) => {
+      dispatch(payments.listing.toggleProjects(toggle));
+    },
+    loadProjects: (tokenV3, hasBillAc) => {
       dispatch(direct.getUserProjectsInit(tokenV3));
-      dispatch(direct.getUserProjectsDone(tokenV3));
+      dispatch(direct.getUserProjectsDone(tokenV3, hasBillAc));
     },
     selectProject: (projectId) => {
       dispatch(payments.editor.selectProject(projectId));
