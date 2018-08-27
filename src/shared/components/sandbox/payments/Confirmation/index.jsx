@@ -13,6 +13,8 @@ export default function Confirmation({
   amount,
   assignee,
   resetPaymentData,
+  paymentDescription,
+  submissionGuidelines,
 }) {
   return (
     <Background>
@@ -39,9 +41,18 @@ paid to
                   {assignee}
                 </strong>
               </p>
-              <p styleName="task">
-Develop a new project submit button logic for the main page.
-              </p>
+              <h3 styleName="description-title">Payment Description</h3>
+              <p
+                styleName="task"
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{ __html: paymentDescription }}
+              />
+              <h3 styleName="description-title">Submission Guidelines</h3>
+              <p
+                styleName="task"
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{ __html: submissionGuidelines }}
+              />
             </div>
           </div>
           <div styleName="actions">
@@ -66,4 +77,6 @@ Confirmation.propTypes = {
   amount: PT.number.isRequired,
   assignee: PT.string.isRequired,
   resetPaymentData: PT.func.isRequired,
+  paymentDescription: PT.string.isRequired,
+  submissionGuidelines: PT.string.isRequired,
 };

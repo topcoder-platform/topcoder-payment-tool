@@ -64,6 +64,14 @@ Object {
     "sandbox": Object {
       "payments": Object {
         "editor": Object {
+          "challengeTechnologyTags": Array [],
+          "copilot": "",
+          "copilotInputKeyword": "",
+          "copilotInputPopupVisible": false,
+          "copilotInputSelected": Object {},
+          "copilotPaymentAmount": 0,
+          "copilotSuggestions": Array [],
+          "getCopilotSuggestionsForKeyword": "",
           "getMemberSuggestionsForKeyword": "",
           "memberInputKeyword": "",
           "memberInputPopupVisible": false,
@@ -76,8 +84,11 @@ Object {
           "paymentTitle": "",
           "selectedBillingAccountId": 0,
           "selectedProjectId": 0,
+          "submissionGuidelines": "",
+          "technologyTags": Array [],
         },
         "listing": Object {
+          "hasActiveBillingAccount": true,
           "selectedProjectId": 0,
         },
       },

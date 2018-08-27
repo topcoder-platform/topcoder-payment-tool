@@ -16,6 +16,11 @@
   text-align: center;
 }
 
+.description-title {
+  color: $tc-black;
+  text-align: center;
+}
+
 .card {
   box-sizing: border-box;
   padding: 50px;
@@ -48,7 +53,7 @@
     box-sizing: border-box;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 6px;
-    height: 100px;
+    min-height: 100px;
     padding: 15px;
 
     .user {

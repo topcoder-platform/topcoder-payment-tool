@@ -40,6 +40,9 @@ export default function PaymentRow({ challenge }) {
         </Link>
       </td>
       <td styleName="price">
+        { (new Date(_.get(challenge, 'updatedAt'))).toLocaleString() }
+      </td>
+      <td styleName="price">
         {`$${_.get(challenge, 'prizes[0]', '-')}`}
       </td>
       <td>
