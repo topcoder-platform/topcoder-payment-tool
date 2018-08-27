@@ -238,7 +238,7 @@ $
         </div>
         <div styleName="field">
           <span styleName="label">
-Copilot
+            Copilot
           </span>
           <MemberSearchInput
             disabled={!neu}
@@ -284,7 +284,7 @@ $
           { neu
             && ((paymentAmount && paymentAssignee) || (copilot && copilotPaymentAmount))
             && paymentDescription
-            && challengeTechnologyTags.length
+            // && challengeTechnologyTags.length
             && paymentTitle ? (
               <PrimaryButton
                 onClick={makePayment}

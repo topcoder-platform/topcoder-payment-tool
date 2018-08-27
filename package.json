@@ -58,7 +58,7 @@
     "shortid": "^2.2.8",
     "slick-carousel": "^1.8.1",
     "tc-accounts": "git+https://github.com/appirio-tech/accounts-app.git#dev",
-    "topcoder-react-lib": "file:../topcoder-react-lib-0.4.9.tgz",
+    "topcoder-react-lib": "^0.6.0",
     "topcoder-react-ui-kit": "^0.5.2",
     "topcoder-react-utils": "^0.7.5"
   },

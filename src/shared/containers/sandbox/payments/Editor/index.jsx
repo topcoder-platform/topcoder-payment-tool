@@ -185,6 +185,7 @@ class EditorContainer extends React.Component {
     try {
       const {
         copilotPaymentAmount,
+        paymentAmount,
         paymentTitle,
         setPageState,
         selectedBillingAccountId,
@@ -198,7 +199,6 @@ class EditorContainer extends React.Component {
         submissionGuidelines,
         copilot,
         paymentAssignee,
-        paymentAmount,
       } = this.props;
 
       const membersService = getMembersService(tokenV3);
@@ -210,11 +210,8 @@ class EditorContainer extends React.Component {
       setPageState(PAGE_STATE.WAITING_PAYMENT_DRAFT);
       const challengeService = getChallengeService(tokenV3);
       let copilotId = 0;
-      if (!paymentAssignee) {
-        paymentAssignee = copilot;
-        paymentAmount = copilotPaymentAmount;
-        copilotId = 0;
-      } else if (copilot) {
+      if (!paymentAssignee) paymentAssignee = copilot;
+      if (copilot) {
         copilot = await membersService.getMemberInfo(copilot);
         copilotId = copilot.userId ? copilot.userId : 0;
       }
@@ -255,6 +252,8 @@ class EditorContainer extends React.Component {
       setPageState,
       setPaymentAmount,
       setCopilotPaymentAmount,
+      setCopilotInputKeyword,
+      setCopilotInputPopupVisible,
       setPaymentAssignee,
       setPaymentDescription,
       setSubmissionGuidelines,
@@ -266,6 +265,8 @@ class EditorContainer extends React.Component {
     setCopilotPaymentAmount(0);
     setPaymentAssignee('');
     setCopilot('');
+    setCopilotInputKeyword('');
+    setCopilotInputPopupVisible(false);
     setPaymentDescription('');
     setSubmissionGuidelines('');
     setPaymentTitle('');
@@ -350,15 +351,15 @@ class EditorContainer extends React.Component {
       );
     }
     if (pageState === PAGE_STATE.PAID) {
-      const payment = paymentAmount !== 0 ? paymentAmount : copilotPaymentAmount;
       const competitior = paymentAssignee !== '' ? paymentAssignee : copilot;
       return (
         <Confirmation
-          amount={payment}
+          amount={paymentAmount}
           assignee={competitior}
+          copilot={copilot}
+          copilotFee={copilotPaymentAmount}
+          paymentTitle={paymentTitle}
           resetPaymentData={() => this.resetPaymentData()}
-          paymentDescription={md.render(paymentDescription)}
-          submissionGuidelines={md.render(submissionGuidelines)}
         />
       );
     }

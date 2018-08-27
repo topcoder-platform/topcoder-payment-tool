@@ -12,9 +12,10 @@ import './style.scss';
 export default function Confirmation({
   amount,
   assignee,
+  copilot,
+  copilotFee,
   resetPaymentData,
-  paymentDescription,
-  submissionGuidelines,
+  paymentTitle,
 }) {
   return (
     <Background>
@@ -30,41 +31,30 @@ Payment Completed
           <div styleName="paycheck">
             <div styleName="info">
               <p styleName="user">
-                <strong>
-$
-                  {amount}
-                </strong>
-                {' '}
-paid to
-                {' '}
-                <strong styleName="name">
-                  {assignee}
-                </strong>
+                <strong>${amount}</strong> paid to &zwnj;
+                <strong styleName="name">{assignee}</strong>
               </p>
-              <h3 styleName="description-title">Payment Description</h3>
-              <p
-                styleName="task"
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{ __html: paymentDescription }}
-              />
-              <h3 styleName="description-title">Submission Guidelines</h3>
-              <p
-                styleName="task"
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{ __html: submissionGuidelines }}
-              />
+              {
+                copilot && copilotFee ? (
+                  <p styleName="user">
+                    <strong>${copilotFee}</strong> paid to &zwnj;
+                    <strong styleName="name">{copilot}</strong> as copilot
+                  </p>
+                ) : null
+              }
+              <p styleName="task">{paymentTitle}</p>
             </div>
           </div>
           <div styleName="actions">
             <Button
               onClick={resetPaymentData}
             >
-Make another payment
+              Make another payment
             </Button>
             <PrimaryButton
               to="/"
             >
-Ok, done for now
+              Ok, done for now
             </PrimaryButton>
           </div>
         </div>
@@ -73,10 +63,16 @@ Ok, done for now
   );
 }
 
+Confirmation.defaultProps = {
+  copilot: '',
+  copilotFee: 0,
+};
+
 Confirmation.propTypes = {
   amount: PT.number.isRequired,
   assignee: PT.string.isRequired,
+  copilot: PT.string,
+  copilotFee: PT.number,
+  paymentTitle: PT.string.isRequired,
   resetPaymentData: PT.func.isRequired,
-  paymentDescription: PT.string.isRequired,
-  submissionGuidelines: PT.string.isRequired,
 };
