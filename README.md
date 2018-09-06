@@ -4,7 +4,7 @@
 ![Release Version](https://img.shields.io/github/tag/topcoder-platform/topcoder-payment-tool.svg)
 
 Based on
-[`topcoder-react-starter`](https://www.npmjs.com/package/topcoder-react-starter).
+[`topcoder-react-starter`](https://github.com/topcoder-platform/topcoder-react-starter).
 
 To install, test, and run in development mode:
 ```bash

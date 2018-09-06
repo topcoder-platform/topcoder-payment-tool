@@ -182,18 +182,17 @@ class EditorContainer extends React.Component {
    * Handles the payment.
    */
   async pay() {
+    const {
+      copilotPaymentAmount,
+      paymentAmount,
+      paymentTitle,
+      setPageState,
+      selectedBillingAccountId,
+      selectedProjectId,
+      tokenV3,
+      challengeTechnologyTags,
+    } = this.props;
     try {
-      const {
-        copilotPaymentAmount,
-        paymentAmount,
-        paymentTitle,
-        setPageState,
-        selectedBillingAccountId,
-        selectedProjectId,
-        tokenV3,
-        challengeTechnologyTags,
-      } = this.props;
-
       let {
         paymentDescription,
         submissionGuidelines,
@@ -237,6 +236,7 @@ class EditorContainer extends React.Component {
       }
       setPageState(PAGE_STATE.PAID);
     } catch (error) {
+      setPageState(PAGE_STATE.NEW_PAYMENT);
       logger.error(error);
       fireErrorMessage(
         'Failed to proceed the payment',

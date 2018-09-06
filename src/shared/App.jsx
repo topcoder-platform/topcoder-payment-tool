@@ -2,6 +2,7 @@
  * Root component of the app.
  */
 
+import ErrorMessage from 'containers/ErrorMessage';
 import React from 'react';
 import Routes from 'routes';
 
@@ -19,6 +20,7 @@ export default function Application() {
         description="Topcoder Payment Tool"
       />
       <Routes />
+      <ErrorMessage />
       { isomorphy.isDevBuild() ? <DevTools /> : undefined }
     </div>
   );
