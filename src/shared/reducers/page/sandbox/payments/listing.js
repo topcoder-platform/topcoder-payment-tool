@@ -16,6 +16,10 @@ function onSelectProject(state, { payload }) {
   return { ...state, selectedProjectId: payload };
 }
 
+function onToggleProjects(state, { payload }) {
+  return { ...state, hasActiveBillingAccount: payload };
+}
+
 /**
  * Creates reducer with the specified initial state, or default state otherwise.
  * @param {Object} state Optional. Initial state. If not given, default state
@@ -26,8 +30,10 @@ function create(state = {}) {
   const a = actions.page.sandbox.payments.listing;
   return handleActions({
     [a.selectProject]: onSelectProject,
+    [a.toggleProjects]: onToggleProjects,
   }, _.defaults(state, {
     selectedProjectId: 0,
+    hasActiveBillingAccount: true,
   }));
 }
 
