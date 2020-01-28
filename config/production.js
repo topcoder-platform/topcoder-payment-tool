@@ -6,6 +6,8 @@ module.exports = {
   API: {
     V2: 'https://api.topcoder.com/v2',
     V3: 'https://api.topcoder.com/v3',
+    V4: 'https://api.topcoder.com/v4',
+    V5: 'https://api.topcoder.com/v5',
   },
   CDN: {
     PUBLIC: 'https://d2nl5eqipnb33q.cloudfront.net',
