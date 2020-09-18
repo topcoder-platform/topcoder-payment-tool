@@ -24,7 +24,7 @@ module.exports = {
     APP: 'https://community-app.topcoder-dev.com',
 
     ARENA: 'https://arena.topcoder-dev.com',
-    AUTH: 'http://accounts.topcoder-dev.com',
+    AUTH: 'https://accounts-auth0.topcoder-dev.com',
     BASE: 'https://www.topcoder-dev.com',
     BLOG: 'https://www.topcoder.com/blog',
     BLOG_FEED: 'https://www.topcoder-dev.com/feed',
