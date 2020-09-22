@@ -78,8 +78,8 @@ workflows:
       - "build-dev":
           context : org-global
           filters:
-            branches: ["feature/Auth0-RS256-Token"]
-
+            branches: 
+              only: ["feature/Auth0-RS256-Token"]
       # Production builds are exectuted only on tagged commits to the
       # master branch.
       - "build-prod":
