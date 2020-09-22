@@ -29,9 +29,9 @@ builddeploy_steps: &builddeploy_steps
       - run: *install_dependency
       - run: *install_deploysuite
       - run:
-        name: "AWS Configuration"
-        command: |
-          ./awsconfiguration.sh $BUILD_ENV
+          name: "AWS Configuration"
+          command: |
+            ./awsconfiguration.sh $BUILD_ENV
           source awsenvconf
       - restore_cache: *restore_cache_settings_for_build
       - run:
