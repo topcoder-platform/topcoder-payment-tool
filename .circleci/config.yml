@@ -46,6 +46,7 @@ builddeploy_steps: &builddeploy_steps
       - deploy:
           name: Running MasterScript.
           command: |
+            source awsenvconf
             ./buildenv.sh -e $DEPLOY_ENV -b ${LOGICAL_ENV}-${APPNAME}-deployvar
             source buildenvvar
             #./master_deploy.sh -d ECS -e $DEPLOY_ENV -t latest -s ${LOGICAL_ENV}-global-appvar,${LOGICAL_ENV}-${APPNAME}-appvar -i ${APPNAME}
@@ -79,7 +80,7 @@ workflows:
           filters:
             branches:
               only:
-                - develop
+                - feature/Auth0-RS256-Token
 
       # Production builds are exectuted only on tagged commits to the
       # master branch.
