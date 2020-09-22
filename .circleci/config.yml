@@ -32,7 +32,7 @@ builddeploy_steps: &builddeploy_steps
           name: "AWS Configuration"
           command: |
             ./awsconfiguration.sh $BUILD_ENV
-          source awsenvconf
+            source awsenvconf
       - restore_cache: *restore_cache_settings_for_build
       - run:
           name: Installation of build dependencies.
