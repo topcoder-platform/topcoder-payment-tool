@@ -16,12 +16,16 @@ Object {
     "details": null,
     "loadingCheckpoints": false,
     "loadingDetailsForChallengeId": "",
+    "loadingMMSubmissionsForChallengeId": "",
     "loadingResultsForChallengeId": "",
+    "loadingSubmissionInformationForSubmissionId": "",
+    "mmSubmissions": Array [],
     "mySubmissions": Object {},
     "mySubmissionsManagement": Object {},
     "registering": false,
     "results": null,
     "resultsLoadedForChallengeId": "",
+    "submissionInformation": null,
     "unregistering": false,
     "updatingChallengeUuid": "",
   },
@@ -48,8 +52,33 @@ Object {
     "groups": Object {},
     "loading": Object {},
   },
+  "looker": Object {
+    "dataSet": Object {},
+  },
   "lookup": Object {
+    "allCountries": Array [],
+    "countries": Array [],
+    "hasMoreModels": false,
+    "hasMoreOses": false,
+    "manufacturers": Array [],
+    "modelPage": 1,
+    "models": Array [],
+    "osPage": 1,
+    "oses": Array [],
+    "reviewTypes": Array [],
     "skillTags": Array [],
+    "types": Array [],
+  },
+  "memberSearch": Object {
+    "error": false,
+    "loadingMore": false,
+    "moreMatchesAvailable": false,
+    "pageLoaded": false,
+    "previousSearchTerm": null,
+    "searchTermTag": null,
+    "topMembers": Array [],
+    "totalCount": 0,
+    "usernameMatches": Array [],
   },
   "memberTasks": Object {
     "allLoaded": false,
@@ -60,6 +89,7 @@ Object {
   },
   "members": Object {},
   "mySubmissionsManagement": Object {},
+  "notifications": Object {},
   "page": Object {
     "sandbox": Object {
       "payments": Object {
@@ -102,6 +132,8 @@ Object {
     "loadingError": false,
     "skills": null,
     "stats": null,
+    "updateProfileSuccess": null,
+    "verifyError": null,
   },
   "reviewOpportunity": Object {
     "authError": false,
@@ -110,6 +142,7 @@ Object {
     "requiredTerms": Array [],
   },
   "settings": Object {
+    "traitRequestCount": 0,
     "userTraits": Array [],
   },
   "stats": Object {
