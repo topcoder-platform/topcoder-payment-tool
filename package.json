@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/topcoder-platform/topcoder-react-utils#readme",
   "dependencies": {
-    "@topcoder-platform/tc-auth-lib": "git+https://github.com/topcoder-platform/tc-auth-lib.git#dev",
+    "@topcoder-platform/tc-auth-lib": "git+https://github.com/topcoder-platform/tc-auth-lib.git#1.0.4",
     "babel-register": "^6.26.0",
     "babel-runtime": "^6.26.0",
     "browser-cookies": "^1.1.0",
