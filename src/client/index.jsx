@@ -10,7 +10,7 @@ import {
   configureConnector,
   decodeToken,
   getFreshToken,
-} from 'tc-accounts';
+} from '@topcoder-platform/tc-auth-lib';
 import { actions, logger, errors } from 'topcoder-react-lib';
 import { client, redux } from 'topcoder-react-utils';
 

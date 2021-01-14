@@ -13,7 +13,7 @@ module.exports = {
   URL: {
     ARENA: 'https://arena.topcoder.com',
     APP: 'https://community-app.topcoder.com',
-    AUTH: 'https://accounts.topcoder.com',
+    AUTH: 'https://accounts-auth0.topcoder.com',
     BASE: 'https://www.topcoder.com',
     BLOG: 'https://www.topcoder.com/blog',
     BLOG_FEED: 'https://www.topcoder.com/feed',
@@ -26,7 +26,7 @@ module.exports = {
     IOS: 'https://ios.topcoder.com',
 
     /* Connector URL of the TC accounts App. */
-    ACCOUNTS_APP_CONNECTOR: 'https://accounts.topcoder.com/connector.html',
+    ACCOUNTS_APP_CONNECTOR: 'https://accounts-auth0.topcoder.com',
     TCO17: 'https://tco17.topcoder.com/',
 
     TOPGEAR: 'https://topgear-app.wipro.com',
