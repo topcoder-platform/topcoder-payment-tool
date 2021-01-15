@@ -12,7 +12,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "./node_modules/.bin/eslint --ext .js,.jsx .",
     "lint:scss": "./node_modules/.bin/stylelint **/*.scss --syntax scss",
-    "start": "cross-env BABEL_ENV=production NODE_ENV=production node ./bin/www",
+    "start": "cross-env BABEL_ENV=production NODE_ENV=production node -r esm ./bin/www",
     "test": "npm run lint && npm run jest"
   },
   "repository": {

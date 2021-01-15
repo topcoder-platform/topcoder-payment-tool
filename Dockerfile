@@ -16,8 +16,12 @@ ENV NODE_CONFIG_ENV=$NODE_CONFIG_ENV
 ENV SEGMENT_IO_API_KEY=$SEGMENT_IO_API_KEY
 
 RUN npm install
+RUN npm install net
+RUN npm install tls
+RUN npm install @topcoder-platform/tc-auth-lib
 RUN npm test
 RUN npm run build
+RUN npm install esm
 
 EXPOSE 3000
 CMD ["npm", "start"]
