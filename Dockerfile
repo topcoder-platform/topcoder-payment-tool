@@ -19,9 +19,9 @@ RUN npm install
 RUN npm install net
 RUN npm install tls
 RUN npm install @topcoder-platform/tc-auth-lib
-RUN npm install esm
 RUN npm test
 RUN npm run build
+RUN npm install esm
 
 EXPOSE 3000
 CMD ["npm", "start"]
