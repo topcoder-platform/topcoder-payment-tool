@@ -25,7 +25,8 @@ const Abbreviation = {
     DEVELOP_MARATHON_MATCH: 'MM',
     FIRST2FINISH: 'F2F',
     FIRST_2_FINISH: 'F2F',
-    CODE: 'Cd',
+    CODE: 'CH',
+    TSK: 'TSK',
   },
   DESIGN: {
     BANNERS_OR_ICONS: 'BI',
@@ -40,9 +41,11 @@ const Abbreviation = {
     IDEA_GENERATION: 'IG',
     DESIGN_FIRST2FINISH: 'DF2F',
     DESIGN_FIRST_2_FINISH: 'DF2F',
+    FIRST_2_FINISH: 'DF2F',
     WEB_DESIGNS: 'Wb',
+    CODE: 'CH',
+    TSK: 'TSK',
   },
-
   // TODO: When data science challenges are returned by the API v2, they have
   // their track set to `data` instead of `data_science` and their sub-track set
   // to `marathon` rather than `marathon_match`. However, just renaming existing
@@ -51,6 +54,14 @@ const Abbreviation = {
   DATA_SCIENCE: {
     SRM: 'SRM',
     MARATHON_MATCH: 'MM',
+    FIRST_2_FINISH: 'F2F',
+    CODE: 'CH',
+    TSK: 'TSK',
+  },
+  'Quality Assurance': {
+    FIRST_2_FINISH: 'F2F',
+    CODE: 'CH',
+    TSK: 'TSK',
   },
   DATA: {
     SRM: 'SRM',

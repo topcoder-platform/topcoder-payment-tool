@@ -31,7 +31,12 @@ $track-radius-4: $corner-radius * 2;
       background: $tc-light-blue;
     }
 
-    &.develop {
+    &.qa {
+      background: #8231a9;
+    }
+
+    &.develop,
+    &.development {
       background: $tc-green;
     }
 
@@ -58,7 +63,12 @@ $track-radius-4: $corner-radius * 2;
       background: $tc-light-blue-10;
     }
 
-    &.develop {
+    &.qa {
+      background: #8231a9;
+    }
+
+    &.develop,
+    &.development {
       color: $tc-green;
       background: $tc-green-10;
     }

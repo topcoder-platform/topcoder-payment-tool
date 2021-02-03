@@ -38,6 +38,7 @@ PaymentStatus.propTypes = {
     'DELETED',
     'PAUSED',
     'CANCELLED_CLIENT_REQUEST',
+    'NEW',
   ]).isRequired,
   text: PT.string.isRequired,
 };

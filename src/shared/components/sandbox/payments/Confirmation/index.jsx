@@ -53,6 +53,7 @@ Payment Completed
             </Button>
             <PrimaryButton
               to="/"
+              onClick={resetPaymentData}
             >
               Ok, done for now
             </PrimaryButton>

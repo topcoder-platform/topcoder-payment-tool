@@ -25,8 +25,8 @@ export default function Listing({
   let content = memberTasks
     .filter(item => item.projectId === selectedProjectIdNum)
     .sort((a, b) => {
-      const aDate = a.updatedAt || a.createdAt;
-      const bDate = b.updatedAt || b.createdAt;
+      const aDate = a.updated || a.created;
+      const bDate = b.updated || b.created;
       return bDate.localeCompare(aDate);
     }).map(challenge => (
       <PaymentRow

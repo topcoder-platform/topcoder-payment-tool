@@ -16,12 +16,16 @@ Object {
     "details": null,
     "loadingCheckpoints": false,
     "loadingDetailsForChallengeId": "",
+    "loadingMMSubmissionsForChallengeId": "",
     "loadingResultsForChallengeId": "",
+    "loadingSubmissionInformationForSubmissionId": "",
+    "mmSubmissions": Array [],
     "mySubmissions": Object {},
     "mySubmissionsManagement": Object {},
     "registering": false,
     "results": null,
     "resultsLoadedForChallengeId": "",
+    "submissionInformation": null,
     "unregistering": false,
     "updatingChallengeUuid": "",
   },
@@ -48,7 +52,12 @@ Object {
     "groups": Object {},
     "loading": Object {},
   },
+  "looker": Object {
+    "dataSet": Object {},
+  },
   "lookup": Object {
+    "allCountries": Array [],
+    "countries": Array [],
     "skillTags": Array [],
   },
   "memberTasks": Object {
@@ -102,6 +111,8 @@ Object {
     "loadingError": false,
     "skills": null,
     "stats": null,
+    "updateProfileSuccess": null,
+    "verifyError": null,
   },
   "reviewOpportunity": Object {
     "authError": false,
@@ -110,6 +121,7 @@ Object {
     "requiredTerms": Array [],
   },
   "settings": Object {
+    "traitRequestCount": 0,
     "userTraits": Array [],
   },
   "stats": Object {

@@ -20,12 +20,14 @@ import { connect } from 'react-redux';
 import { goToLogin } from 'utils/tc';
 import { AUTOCOMPLETE_TRIGGER_LENGTH } from 'components/MemberSearchInput';
 import { logger, errors, services } from 'topcoder-react-lib';
+import { config } from 'topcoder-react-utils';
 
 import './style.scss';
 
 const { fireErrorMessage } = errors;
 const getChallengeService = services.challenge.getService;
-const getMembersService = services.members.getService;
+const getResourcesService = services.resource.getService;
+const { CHALLENGE_REFRESH_INTERVAL } = config;
 const md = new Markdown();
 
 /**
@@ -68,7 +70,7 @@ function handleProjectDetailsLoading(props) {
 }
 
 class EditorContainer extends React.Component {
-  componentDidMount() {
+  async componentDidMount() {
     const {
       authenticating,
       challenge,
@@ -102,14 +104,13 @@ class EditorContainer extends React.Component {
     return undefined;
   }
 
-  componentWillReceiveProps(nextProps) {
+  async componentWillReceiveProps(nextProps) {
     const {
       authenticating,
       challenge,
       loadingProjectsForUsername,
       loadProjects,
       paymentAmount,
-      // paymentAssignee,
       paymentDescription,
       submissionGuidelines,
       paymentTitle,
@@ -119,8 +120,9 @@ class EditorContainer extends React.Component {
       setPageState,
       setPaymentAmount,
       setCopilotPaymentAmount,
-      setPaymentAssignee,
-      setCopilot,
+      copilotPaymentAmount,
+      setMemberInputKeyword,
+      setCopilotInputKeyword,
       setPaymentDescription,
       setPaymentTitle,
       setSubmissionGuidelines,
@@ -159,11 +161,48 @@ class EditorContainer extends React.Component {
           loadMemberTasks(challenge.projectId, 0, tokenV3);
         }
       }
-      if (paymentAmount !== challenge.prizes[0]) {
-        setPaymentAmount(challenge.prizes[0] || 0);
+      const taskPrize = challenge.prizes.filter(prize => prize.type === 'placement')[0];
+      if (!_.isEmpty(taskPrize)) {
+        const taskPaymentAmount = _.sum(_.map(taskPrize.prizes, prize => prize.value));
+        if (paymentAmount !== taskPaymentAmount) {
+          setPaymentAmount(taskPaymentAmount || 0);
+        }
       }
       if (paymentTitle !== challenge.name) {
         setPaymentTitle(challenge.name);
+        const resourcesService = getResourcesService(tokenV3);
+        const resources = await resourcesService.getResourceRoles();
+        let submitter;
+        // eslint-disable-next-line
+        let _copilot;
+        // eslint-disable-next-line
+        resources.map((role) => {
+          if (role.name === 'Copilot') {
+            _copilot = role;
+          }
+          if (role.name === 'Submitter') {
+            submitter = role;
+          }
+        });
+        const challengeResources = await resourcesService.getChallengeResourceRoles({
+          challengeId: challenge.id,
+        });
+        const assignee = challengeResources.filter(
+          resource => resource.roleId === submitter.id,
+        );
+        const challengeCopilot = challengeResources.filter(
+          resource => resource.roleId === _copilot.id,
+        );
+        if (!_.isEmpty(assignee)) {
+          setMemberInputKeyword(assignee[0].memberHandle);
+        } else {
+          setMemberInputKeyword('N/A');
+        }
+        if (!_.isEmpty(challengeCopilot)) {
+          setCopilotInputKeyword(challengeCopilot[0].memberHandle);
+        } else {
+          setCopilotInputKeyword('N/A');
+        }
       }
       if (paymentDescription !== challenge.detailedRequirements) {
         setPaymentDescription(challenge.detailedRequirements);
@@ -171,9 +210,13 @@ class EditorContainer extends React.Component {
       if (submissionGuidelines !== challenge.finalSubmissionGuidelines) {
         setSubmissionGuidelines(challenge.finalSubmissionGuidelines);
       }
-      setPaymentAssignee('N/A');
-      setCopilotPaymentAmount(0);
-      setCopilot('N/A');
+      const copilotPrize = challenge.prizes.filter(prize => prize.type === 'copilot')[0];
+      if (!_.isEmpty(copilotPrize)) {
+        const copilotAmount = _.sum(_.map(copilotPrize.prizes, prize => prize.value));
+        if (copilotAmount !== copilotPaymentAmount) {
+          setCopilotPaymentAmount(copilotAmount);
+        }
+      }
     }
     return undefined;
   }
@@ -187,7 +230,6 @@ class EditorContainer extends React.Component {
       paymentAmount,
       paymentTitle,
       setPageState,
-      selectedBillingAccountId,
       selectedProjectId,
       tokenV3,
       challengeTechnologyTags,
@@ -195,46 +237,104 @@ class EditorContainer extends React.Component {
     try {
       let {
         paymentDescription,
-        submissionGuidelines,
-        copilot,
         paymentAssignee,
       } = this.props;
 
-      const membersService = getMembersService(tokenV3);
+      const { copilot } = this.props;
+
       paymentDescription = md.render(paymentDescription);
-      submissionGuidelines = md.render(submissionGuidelines);
       const technologies = challengeTechnologyTags.map(t => (
         { name: t.name, id: parseInt(t.id, 10) }
       ));
       setPageState(PAGE_STATE.WAITING_PAYMENT_DRAFT);
       const challengeService = getChallengeService(tokenV3);
-      let copilotId = 0;
+      const resourcesService = getResourcesService(tokenV3);
       if (!paymentAssignee) paymentAssignee = copilot;
-      if (copilot) {
-        copilot = await membersService.getMemberInfo(copilot);
-        copilotId = copilot.userId ? copilot.userId : 0;
-      }
+
+      const challengeTypes = await challengeService.getChallengeTypes({
+        name: 'Task',
+      });
+
+      const challengeTracks = await challengeService.getChallengeTracks({
+        name: 'Development',
+      });
+
+      const challengeTimelines = await challengeService.getChallengeTimeLines({
+        trackId: challengeTracks[0].id,
+        typeId: challengeTypes[0].id,
+      });
 
       const challenge = await challengeService.createTask(
         selectedProjectId,
-        selectedBillingAccountId,
         paymentTitle,
         paymentDescription,
-        paymentAssignee,
+        'markdown',
         paymentAmount,
-        submissionGuidelines,
-        copilotId,
         copilotPaymentAmount,
         technologies,
+        challengeTypes[0].id,
+        challengeTracks[0].id,
+        challengeTimelines[0].timelineTemplateId,
       );
       setPageState(PAGE_STATE.WAITING_PAYMENT_ACTIVATION);
-      await challengeService.activate(challenge.id);
-      setPageState(PAGE_STATE.WAITING_PAYMENT_CLOSURE);
-      const member = await membersService.getMemberInfo(paymentAssignee);
-      if (member) {
-        await challengeService.close(challenge.id, member.userId);
-      }
-      setPageState(PAGE_STATE.PAID);
+      const resourceRoles = await resourcesService.getResourceRoles();
+      let submitter;
+      // eslint-disable-next-line
+      let _copilot;
+      // Find the Submitter and Copilot resource role to get the roleId
+      // eslint-disable-next-line
+      resourceRoles.map((role) => {
+        if (role.name === 'Copilot') {
+          _copilot = role;
+        }
+        if (role.name === 'Submitter') {
+          submitter = role;
+        }
+      });
+
+      // Call the V5 Resources API to create the submitter resource
+      await resourcesService.createChallengeResource({
+        challengeId: challenge.id,
+        memberHandle: paymentAssignee,
+        roleId: submitter.id,
+      });
+
+      // Call the V5 Resources API to create the Copilot resource
+      await resourcesService.createChallengeResource({
+        challengeId: challenge.id,
+        memberHandle: copilot,
+        roleId: _copilot.id,
+      });
+
+      // Keep Refreshing the Data every 5 seconds
+      const timer = setInterval(async () => {
+        const challengeData = await challengeService.getChallengeDetails(challenge.id);
+        if (challengeData.legacy && challengeData.legacy.directProjectId) {
+          clearInterval(timer);
+          try {
+            // Activate the challenge by changing ths status
+            await challengeService.updateChallenge(challenge.id, {
+              status: 'Active',
+            });
+
+            setPageState(PAGE_STATE.WAITING_PAYMENT_CLOSURE);
+
+            // Mark the challenge as completed by changing ths status
+            await challengeService.updateChallenge(challenge.id, {
+              status: 'Completed',
+            });
+
+            setPageState(PAGE_STATE.PAID);
+          } catch (error) {
+            setPageState(PAGE_STATE.NEW_PAYMENT);
+            logger.error(error);
+            fireErrorMessage(
+              'Failed to proceed the payment',
+              'Try to find it in Direct/OR to finalize it manually',
+            );
+          }
+        }
+      }, CHALLENGE_REFRESH_INTERVAL);
     } catch (error) {
       setPageState(PAGE_STATE.NEW_PAYMENT);
       logger.error(error);
@@ -417,6 +517,7 @@ class EditorContainer extends React.Component {
 EditorContainer.defaultProps = {
   challenge: null,
   projectDetails: null,
+  submissionGuidelines: '',
 };
 
 EditorContainer.propTypes = {
@@ -445,15 +546,18 @@ EditorContainer.propTypes = {
   setCopilotInputSelected: PT.func.isRequired,
   pageState: PT.oneOf(_.values(PAGE_STATE)).isRequired,
   paymentAmount: PT.number.isRequired,
-  copilotPaymentAmount: PT.number.isRequired,
+  copilotPaymentAmount: PT.oneOfType([
+    PT.string,
+    PT.number,
+  ]).isRequired,
   paymentAssignee: PT.string.isRequired,
   copilot: PT.string.isRequired,
   paymentId: PT.string.isRequired,
   paymentDescription: PT.string.isRequired,
-  submissionGuidelines: PT.string.isRequired,
+  submissionGuidelines: PT.string,
   paymentTitle: PT.string.isRequired,
   projectDetails: PT.shape({
-    billingAccountIds: PT.arrayOf(PT.number).isRequired,
+    billingAccountIds: PT.arrayOf(PT.number),
   }),
   projects: PT.arrayOf(PT.object).isRequired,
   selectedBillingAccountId: PT.number.isRequired,
@@ -486,12 +590,12 @@ function mapStateToProps(state, ownProps) {
 
   let challenge;
   const { paymentId } = ownProps;
-  if (Number(paymentId) === _.get(state, 'challenge.details.id')) {
+  if (`${paymentId}` === _.get(state, 'challenge.details.id')) {
     challenge = state.challenge.details;
   }
 
   let { projectDetails } = direct;
-  if (_.get(projectDetails, 'project.projectId') !== page.selectedProjectId) {
+  if (_.get(projectDetails, 'id') !== page.selectedProjectId) {
     projectDetails = null;
   }
 

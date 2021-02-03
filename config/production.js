@@ -12,6 +12,7 @@ module.exports = {
   CDN: {
     PUBLIC: 'https://d2nl5eqipnb33q.cloudfront.net',
   },
+  CHALLENGE_REFRESH_INTERVAL: 5000,
   URL: {
     ARENA: 'https://arena.topcoder.com',
     APP: 'https://community-app.topcoder.com',

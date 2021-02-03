@@ -16,11 +16,13 @@ export default function TrackIcon({
   const TCO_URL = `${MAIN_URL}/tco`;
   return (
     <span styleName="trackIcon">
-      <div styleName={`${(isDataScience ? 'data_science' : track.toLowerCase())} main-icon`}>
+      {/* eslint-disable-next-line */}
+      <div styleName={`${(isDataScience ? 'data_science' : track.toLowerCase() === 'quality assurance' ? 'qa' : track.toLowerCase())} main-icon`}>
         {Abbreviation[track][subTrack]}
       </div>
       <a href={`${TCO_URL}`}>
-        <div styleName={tcoEligible ? `${(isDataScience ? 'data_science' : track.toLowerCase())} tco-icon` : 'hidden'}>
+        {/* eslint-disable-next-line */}
+        <div styleName={tcoEligible ? `${(isDataScience ? 'data_science' : track.toLowerCase() === 'quality assurance' ? 'qa' : track.toLowerCase())} tco-icon` : 'hidden'}>
 TCO
         </div>
       </a>

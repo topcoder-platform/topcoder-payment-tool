@@ -66,7 +66,8 @@ export function getSubCommunityBaseUrl(community) {
  * @return {String} Avatar URL in CDN.
  */
 export function getCdnAvatarUrl(apiUrl, size = 100) {
-  if (!apiUrl) return '';
+  // Returns default avatar if there is no API URL
+  if (!apiUrl) return `${config.CDN.PUBLIC}/static-assets/images/ab4a084a9815ebb1cf8f7b451ce4c88f.svg`;
   return `${config.CDN.PUBLIC}/avatar/${
     encodeURIComponent(apiUrl)}?size=${size}`;
 }

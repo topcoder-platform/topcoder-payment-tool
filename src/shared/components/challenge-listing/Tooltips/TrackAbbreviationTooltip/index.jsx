@@ -32,6 +32,7 @@ const DESCRIPTION = {
   WEB_DESIGNS: 'Design UI and front end experiences for web experiences',
   WIDGET_OR_MOBILE_SCREEN_DESIGN: 'Design UI and front end experiences for mobile',
   WIREFRAMES: 'Produce the information architecture for user experiences',
+  TSK: 'Task is a piece of work given to a challenge winner for final fixes or for private work',
 };
 
 const HEADER = {
@@ -54,12 +55,17 @@ const HEADER = {
   WIDGET_OR_MOBILE_SCREEN_DESIGN: 'Widget or Mobile Screen Design (Wg)',
   STUDIO_OTHER: 'Generic design challenge (D)',
   WIREFRAMES: 'Wireframe (Wf)',
+  TSK: 'TASK',
 };
 
 const TRACK_COLOR_CLASS = {
   DESIGN: 'blue',
   DEVELOP: 'green',
   DATA_SCIENCE: 'orange',
+  Development: 'green',
+  Design: 'blue',
+  'Data Science': 'orange',
+  'Quality Assurance': 'violet',
 };
 
 /**

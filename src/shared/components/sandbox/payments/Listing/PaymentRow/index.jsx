@@ -16,18 +16,34 @@ import './style.scss';
 
 export default function PaymentRow({ challenge }) {
   let winner = challenge.winners || [];
-  [winner] = winner.filter(x => x.type === 'final');
+  [winner] = winner.filter(x => parseInt(x.placement, 10) === 1);
+
+  const legacyTracksMapping = {
+    Development: 'DEVELOP',
+    Design: 'DESIGN',
+    'Data Science': 'DATA_SCIENCE',
+    'Quality Assurance': 'Quality Assurance',
+  };
+
+  const legacySubTrackMapping = {
+    First2Finish: 'FIRST_2_FINISH',
+    Challenge: 'CODE',
+    Task: 'TSK',
+  };
+
+  const track = (challenge.track ? legacyTracksMapping[challenge.track] : challenge.legacy.track) || 'DEVELOP';
+  const subTrack = (challenge.type ? legacySubTrackMapping[challenge.type] : challenge.legacy.subTrack) || 'FIRST_2_FINISH';
 
   return (
     <tr styleName="paymentRow">
       <td styleName="icon">
-        <TrackAbbreviationTooltip track={challenge.track} subTrack={challenge.subTrack}>
+        <TrackAbbreviationTooltip track={track} subTrack={subTrack}>
           <span>
             <TrackIcon
-              track={challenge.track}
-              subTrack={challenge.subTrack}
-              tcoEligible={challenge.events ? challenge.events[0].eventName : ''}
-              isDataScience={challenge.isDataScience}
+              track={track}
+              subTrack={subTrack}
+              tcoEligible={!_.isEmpty(challenge.events) ? challenge.events[0].name : ''}
+              isDataScience={challenge.track === 'Data Science'}
             />
           </span>
         </TrackAbbreviationTooltip>
@@ -40,10 +56,10 @@ export default function PaymentRow({ challenge }) {
         </Link>
       </td>
       <td styleName="price">
-        { (new Date(_.get(challenge, 'updatedAt'))).toLocaleString() }
+        { (new Date(_.get(challenge, 'updated'))).toLocaleString() }
       </td>
       <td styleName="price">
-        {`$${_.get(challenge, 'prizes[0]', '-')}`}
+        {`$${_.get(challenge, 'totalPrize', '-')}`}
       </td>
       <td>
         {
@@ -77,7 +93,7 @@ export default function PaymentRow({ challenge }) {
 
 PaymentRow.propTypes = {
   challenge: PT.shape({
-    id: PT.number,
+    id: PT.string,
     winners: PT.arrayOf(PT.object),
   }).isRequired,
 };

@@ -16,6 +16,8 @@ module.exports = {
     PUBLIC: 'https://d1aahxkjiobka8.cloudfront.net',
   },
 
+  CHALLENGE_REFRESH_INTERVAL: 5000,
+
   /* Various URLs. Most of them lead to different segments of Topcoder
    * platform. */
   URL: {

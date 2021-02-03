@@ -44,7 +44,6 @@ export default function Editor({
   paymentTitle,
   projectDetails,
   projects,
-  selectedBillingAccountId,
   selectedProjectId,
   selectProject,
   setPaymentAmount,
@@ -103,9 +102,9 @@ Tags
 
   if (challenge) {
     winner = challenge.winners || [];
-    [winner] = winner.filter(x => x.type === 'final');
+    [winner] = winner.filter(x => x.placement === 1);
 
-    challengeCopilot = 'N/A';
+    challengeCopilot = copilotInputKeyword;
 
     description = (
       <div
@@ -126,7 +125,7 @@ Tags
     techTags = null;
     if (memberTasks) {
       const task = memberTasks.filter(x => x.id === challenge.id);
-      updatedAt = task.length > 0 ? task[0].updatedAt : null;
+      updatedAt = task.length > 0 ? task[0].updated : null;
       updatedAt = (
         <div styleName="field">
           <span styleName="label">
@@ -143,11 +142,14 @@ Posted at
   }
 
   let content;
-  if (!projectDetails) content = <LoadingIndicator />;
-  else {
-    const billingAccounts = (projectDetails.billingAccounts || [])
-      .map(({ id, name }) => ({ label: name, value: id }));
-    const billingAccountsComponent = billingAccounts.length
+
+  if (neu && !projectDetails) {
+    content = <LoadingIndicator />;
+  } else if (!neu && (!memberInputKeyword || !copilotInputKeyword)) {
+    content = <LoadingIndicator />;
+  } else {
+    const { billingAccountId } = projectDetails;
+    const billingAccountsComponent = billingAccountId
       ? (
         <div styleName="field">
           <span styleName="label">
@@ -156,8 +158,11 @@ Posted at
           <Select
             autoBlur
             disabled={!neu}
-            options={billingAccounts}
-            value={selectedBillingAccountId}
+            options={[{
+              label: billingAccountId,
+              value: billingAccountId,
+            }]}
+            value={billingAccountId}
           />
         </div>
       )
@@ -335,6 +340,7 @@ Editor.defaultProps = {
   challenge: null,
   neu: true,
   projectDetails: null,
+  submissionGuidelines: '',
 };
 
 Editor.propTypes = {
@@ -359,16 +365,18 @@ Editor.propTypes = {
   setCopilotInputKeyword: PT.func.isRequired,
   copilotInputSelected: PT.shape().isRequired,
   setCopilotInputSelected: PT.func.isRequired,
-  copilotPaymentAmount: PT.number.isRequired,
+  copilotPaymentAmount: PT.oneOfType([
+    PT.string,
+    PT.number,
+  ]).isRequired,
   copilot: PT.string.isRequired,
   paymentAmount: PT.number.isRequired,
   paymentAssignee: PT.string.isRequired,
   paymentDescription: PT.string.isRequired,
-  submissionGuidelines: PT.string.isRequired,
+  submissionGuidelines: PT.string,
   paymentTitle: PT.string.isRequired,
   projectDetails: PT.shape(),
   projects: PT.arrayOf(PT.object).isRequired,
-  selectedBillingAccountId: PT.number.isRequired,
   selectedProjectId: PT.number.isRequired,
   selectProject: PT.func.isRequired,
   setPaymentAmount: PT.func.isRequired,
