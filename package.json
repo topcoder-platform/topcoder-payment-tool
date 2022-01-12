@@ -39,7 +39,7 @@
     "i": "^0.3.6",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.10",
-    "markdown-it": "^8.4.2",
+    "markdown-it": "^12.3.2",
     "moment": "^2.22.2",
     "moment-timezone": "^0.5.21",
     "npm": "^6.1.0",
